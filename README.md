@@ -1,17 +1,4 @@
-## 1. 참조 라이브러리
-    1. JSON 관련
-        - gson-2.10.1.jar 
-    2. LOG 관련
-        - logback-classic-1.0.13.jar 
-        - logback-core-1.0.13.jar 
-        - logback-access-1.2.9.jar 
-        - slf4j-api-1.7.5.jar
-        - jcl-over-slf4j-1.7.5.jar
-    3. DBMS 관련
-        - postgresql-42.6.0.jar 
-        - HikariCP-4.0.3.jar
-
-## 2. 설정(conf/config.json)
+## 1. 설정(conf/config.json)
     1. 동작 관련 설정
         1) cycle(Long)
             - 수행 주기
@@ -67,3 +54,19 @@
         4) maxBatchCount(Integer)
             - 1회 수행에 최대 삭제 건수
             - 기본값 1000000
+## 2. 문자열 암호화 가이드
+    1. shell 경로로 이동
+    2. ./cipher.sh ${plain text}
+    3. 출력된 암호화 문자열 앞에 @ENC: 예약어를 사용하여 설정(config.json)에 사용
+## 3. 참조 라이브러리
+    1. JSON 관련
+        - gson-2.10.1.jar 
+    2. LOG 관련
+        - logback-classic-1.0.13.jar 
+        - logback-core-1.0.13.jar 
+        - logback-access-1.2.9.jar 
+        - slf4j-api-1.7.5.jar
+        - jcl-over-slf4j-1.7.5.jar
+    3. DBMS 관련
+        - postgresql-42.6.0.jar 
+        - HikariCP-4.0.3.jar
