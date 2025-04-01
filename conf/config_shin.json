@@ -1,0 +1,106 @@
+{
+  "jdbcInfo": {
+    "jdbcUrl": "jdbc:postgresql://192.168.0.17:27012/dumsdb",
+    "username": "dumsadm",
+    "password": "Uracle200",
+    "encrypt" : false
+  },
+  "cycle" : 10000,
+  "startTime": "00:00",
+  "endTime" : "15:00",
+  "cleanJob": {
+    "T_UMS_SEND": {
+      "selectQuery": "SELECT \"UMS_SEQNO\" FROM \"T_UMS_SEND\" WHERE \"REGDATE\" < ? LIMIT 5000 ",
+      "deleteQuery": "DELETE FROM \"T_UMS_SEND\" WHERE \"UMS_SEQNO\" = ?",
+      "pkColumnList": [
+        "UMS_SEQNO"
+      ],
+      "standardDays": 90,
+      "maxBatchCount": 1000000
+    },
+    "T_UMS_SEND_DETAIL": {
+      "selectQuery": "SELECT \"DETAIL_SEQNO\" FROM \"T_UMS_SEND_DETAIL\" WHERE \"REGDATE\" < ? LIMIT 5000 ",
+      "deleteQuery": "DELETE FROM \"T_UMS_SEND_DETAIL\" WHERE \"DETAIL_SEQNO\" = ?",
+      "pkColumnList": [
+        "DETAIL_SEQNO"
+      ],
+      "standardDays": 90,
+      "maxBatchCount": 1000000
+    },
+    "T_UMS_SEND_LEGACY": {
+      "selectQuery": "SELECT \"UMS_SEQNO\" FROM \"T_UMS_SEND_LEGACY\" WHERE \"REGDATE\" < ? LIMIT 5000 ",
+      "deleteQuery": "DELETE FROM \"T_UMS_SEND_LEGACY\" WHERE \"UMS_SEQNO\" = ?",
+      "pkColumnList": [
+        "UMS_SEQNO"
+      ],
+      "standardDays": 90,
+      "maxBatchCount": 1000000
+    },
+    "T_UMS_SEND_DETAIL_LEGACY": {
+      "selectQuery": "SELECT \"DETAIL_SEQNO\" FROM \"T_UMS_SEND_DETAIL_LEGACY\" WHERE \"REGDATE\" < ? LIMIT 5000 ",
+      "deleteQuery": "DELETE FROM \"T_UMS_SEND_DETAIL_LEGACY\" WHERE \"DETAIL_SEQNO\" = ?",
+      "pkColumnList": [
+        "DETAIL_SEQNO"
+      ],
+      "standardDays": 90,
+      "maxBatchCount": 1000000
+    },
+    "T_PUSH_MSG_RECV_MASTER": {
+      "selectQuery": "SELECT \"SEQNO\" FROM \"T_PUSH_MSG_RECV_MASTER\" WHERE \"REGDATE\" < ? LIMIT 5000 ",
+      "deleteQuery": "DELETE FROM \"T_PUSH_MSG_RECV_MASTER\" WHERE \"SEQNO\" = ?",
+      "pkColumnList": [
+        "SEQNO"
+      ],
+      "standardDays": 90,
+      "maxBatchCount": 1000000
+    },
+    "T_PUSH_SUCCESS": {
+      "selectQuery": "SELECT \"SEQNO\", \"PSID\" FROM \"T_PUSH_SUCCESS\" WHERE \"REGDATE\" < ? LIMIT 5000 ",
+      "deleteQuery": "DELETE FROM \"T_PUSH_SUCCESS\" WHERE \"SEQNO\" = ? AND \"PSID\" = ? ",
+      "pkColumnList": [
+        "SEQNO",
+        "PSID"
+      ],
+      "standardDays": 90,
+      "maxBatchCount": 1000000
+    },
+    "T_PUSH_FAIL": {
+      "selectQuery": "SELECT \"SEQNO\", \"PSID\" FROM \"T_PUSH_FAIL\" WHERE \"REGDATE\" < ? LIMIT 5000 ",
+      "deleteQuery": "DELETE FROM \"T_PUSH_FAIL\" WHERE \"SEQNO\" = ? AND \"PSID\" = ? ",
+      "pkColumnList": [
+        "SEQNO",
+        "PSID"
+      ],
+      "standardDays": 90,
+      "maxBatchCount": 1000000
+    },
+    "T_UMS_EXT_TMPL_SEND": {
+      "selectQuery": "SELECT \"SEQNO\" FROM \"T_UMS_EXT_TMPL_SEND\" WHERE \"REGDATE\" < ? LIMIT 5000 ",
+      "deleteQuery": "DELETE FROM \"T_UMS_EXT_TMPL_SEND\" WHERE \"SEQNO\" = ?",
+      "pkColumnList": [
+        "SEQNO"
+      ],
+      "standardDays": 90,
+      "maxBatchCount": 1000000
+    },
+    "T_UMS_SEND_REJECT_CNT": {
+      "selectQuery": "SELECT \"TRANSKEY\" FROM \"T_UMS_SEND_REJECT_CNT\" WHERE \"REGDATE\" < ? LIMIT 5000 ",
+      "deleteQuery": "DELETE FROM \"T_UMS_SEND_REJECT_CNT\" WHERE \"TRANSKEY\" = ?",
+      "pkColumnList": [
+        "TRANSKEY"
+      ],
+      "standardDays": 90,
+      "maxBatchCount": 1000000
+    }
+  },
+  "CHECK_LIST":{
+    "T_PUSH_MSG_RECV_MASTER" :"인덱스에 APPID가 같이 걸려 있음, 앱아이디가 APPID가 하나만 사용하는지 확인 필요",
+    "T_PUSH_SUCCESS" :"기준 데이터 REGDATE컬럼에 대한 인덱스가 없음",
+    "T_PUSH_FAIL" :"기준 데이터 REGDATE컬럼에 대한 인덱스가 없음",
+    "T_UMS_EXT_TMPL_SEND" : "PK, 인덱스 체크 필요",
+    "T_UMS_SEND_REJECT_CNT" : "인덱스 체크 필요, 인덱스가 없음",
+    "T_UMS_SEND_REJECT_HISTORY": "테이블 명세 없음",
+    "otc_noti_box": "테이블 명세 없음"
+
+  }
+}
