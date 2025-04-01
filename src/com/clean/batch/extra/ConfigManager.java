@@ -1,6 +1,9 @@
 package com.clean.batch.extra;
 
 import com.clean.batch.cipher.ICipher;
+import com.clean.batch.vo.CleanJobConfigVo;
+import com.clean.batch.vo.ConfigVo;
+import com.clean.batch.vo.JdbcInfoVo;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;

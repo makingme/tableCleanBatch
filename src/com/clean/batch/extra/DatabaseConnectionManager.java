@@ -1,5 +1,6 @@
 package com.clean.batch.extra;
 
+import com.clean.batch.vo.JdbcInfoVo;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 

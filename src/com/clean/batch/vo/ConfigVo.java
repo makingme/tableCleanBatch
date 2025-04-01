@@ -1,4 +1,4 @@
-package com.clean.batch.extra;
+package com.clean.batch.vo;
 
 import java.util.HashMap;
 import java.util.Map;

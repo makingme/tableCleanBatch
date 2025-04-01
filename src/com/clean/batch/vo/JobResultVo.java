@@ -1,11 +1,11 @@
-package com.clean.batch.extra;
+package com.clean.batch.vo;
 
-public class JobResult {
+public class JobResultVo {
     private final String jobId;
     private final int deleteCount;
     private final long executionTime;
 
-    public JobResult(String jobId, int deleteCount, long executionTime) {
+    public JobResultVo(String jobId, int deleteCount, long executionTime) {
         this.jobId = jobId;
         this.deleteCount = deleteCount;
         this.executionTime = executionTime;

@@ -1,5 +1,6 @@
 package com.clean.batch.extra;
 
+import com.clean.batch.vo.CleanJobConfigVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,12 +12,10 @@ public class CleanJob {
 
     private final String jobId;
     private final CleanJobConfigVo jobConfigVo;
-    private final long standardMilTime;
 
     public CleanJob(String jobId, CleanJobConfigVo cleanJobConfigVo) {
         this.jobId= jobId;
         this.jobConfigVo = cleanJobConfigVo;
-        this.standardMilTime = cleanJobConfigVo.getStandardDays()*24 * 60 * 60 * 1000L;
     }
 
     public int execute() throws SQLException {
@@ -37,7 +36,6 @@ public class CleanJob {
 
             while (batchCount < jobConfigVo.getMaxBatchCount() && !Thread.currentThread().isInterrupted()) {
                 long startTime = System.currentTimeMillis();
-                selectStmt.setTimestamp(1, new Timestamp(System.currentTimeMillis() -standardMilTime));
                 try(ResultSet rs = selectStmt.executeQuery()) {
 
                     int pkCount = 0;

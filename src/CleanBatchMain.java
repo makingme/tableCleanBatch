@@ -1,4 +1,7 @@
 import com.clean.batch.extra.*;
+import com.clean.batch.vo.CleanJobConfigVo;
+import com.clean.batch.vo.ConfigVo;
+import com.clean.batch.vo.JobResultVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -49,7 +52,7 @@ public class CleanBatchMain extends Thread{
         currentThread().setName("CLEAN BATCH-SCHEDULER");
 
         // 모든 작업에 대해 CompletableFuture 생성
-        List<CompletableFuture<JobResult>> futures = jobs.stream()
+        List<CompletableFuture<JobResultVo>> futures = jobs.stream()
                 .map(job -> CompletableFuture.supplyAsync(() -> {
                     try {
                         Thread.currentThread().setName(job.getJobId());
@@ -58,10 +61,10 @@ public class CleanBatchMain extends Thread{
                         int deleteCount = job.execute();
                         long endTime = System.currentTimeMillis();
 
-                        return new JobResult(job.getJobId(), deleteCount, endTime - startTime);
+                        return new JobResultVo(job.getJobId(), deleteCount, endTime - startTime);
                     } catch (Exception e) {
                         logger.error("{} JOB 수행 중 오류 발생: {}", job.getJobId(), e.getMessage(), e);
-                        return new JobResult(job.getJobId(), -1, 0);
+                        return new JobResultVo(job.getJobId(), -1, 0);
                     }
                 }, executorService))
                 .collect(Collectors.toList());
@@ -74,7 +77,7 @@ public class CleanBatchMain extends Thread{
                     // 각 작업의 결과 로깅
                     futures.forEach(future -> {
                         try {
-                            JobResult result = future.get();
+                            JobResultVo result = future.get();
                             if (result.getDeleteCount() >= 0) {
                                 logger.info("{} JOB 처리 완료, 처리 건수:{}, 소요시간:{}ms",
                                         result.getJobId(), result.getDeleteCount(), result.getExecutionTime());

@@ -2,46 +2,40 @@
   "jdbcInfo": {
     "jdbcUrl": "jdbc:postgresql://192.168.0.17:27012/dumsdb",
     "username": "dumsadm",
-    "password": "Uracle200",
-    "encrypt" : false
+    "password": "Uracle200"
   },
   "cycle" : 10000,
   "startTime": "00:00",
   "endTime" : "17:00",
   "cleanJob": {
     "DUMMY1" : {
-      "selectQuery": "select \"UMS_SEQNO\" from \"DUMMY1\" where \"REGDATE\" < ? LIMIT 5000 ",
-      "deleteQuery": "delete from \"DUMMY1\" where \"UMS_SEQNO\" = ?",
       "pkColumnList"  : ["UMS_SEQNO"],
-      "standardDays" : 90,
+      "selectQuery": "select \"UMS_SEQNO\" from \"DUMMY1\" where \"REGDATE\" < now() - INTERVAL '3 months' LIMIT 5000 ",
+      "deleteQuery": "delete from \"DUMMY1\" where \"UMS_SEQNO\" = ?",
       "maxBatchCount" : 10000
     },
     "DUMMY2" : {
-      "selectQuery": "select \"UMS_SEQNO\" from \"DUMMY2\" where \"REGDATE\" < ? LIMIT 5000 ",
-      "deleteQuery": "delete from \"DUMMY2\" where \"UMS_SEQNO\" = ?",
       "pkColumnList"  : ["UMS_SEQNO"],
-      "standardDays" : 90,
+      "selectQuery": "select \"UMS_SEQNO\" from \"DUMMY2\" where \"REGDATE\" < now() - INTERVAL '3 months' LIMIT 5000 ",
+      "deleteQuery": "delete from \"DUMMY2\" where \"UMS_SEQNO\" = ?",
       "maxBatchCount" : 10000
     },
     "DUMMY3" : {
-      "selectQuery": "select \"UMS_SEQNO\" from \"DUMMY3\" where \"REGDATE\" < ? LIMIT 5000 ",
-      "deleteQuery": "delete from \"DUMMY3\" where \"UMS_SEQNO\" = ?",
       "pkColumnList"  : ["UMS_SEQNO"],
-      "standardDays" : 90,
+      "selectQuery": "select \"UMS_SEQNO\" from \"DUMMY3\" where \"REGDATE\" < now() - INTERVAL '3 months' LIMIT 5000 ",
+      "deleteQuery": "delete from \"DUMMY3\" where \"UMS_SEQNO\" = ?",
       "maxBatchCount" : 10000
     },
     "DUMMY4" : {
-      "selectQuery": "select \"UMS_SEQNO\" from \"DUMMY4\" where \"REGDATE\" < ? LIMIT 5000 ",
-      "deleteQuery": "delete from \"DUMMY4\" where \"UMS_SEQNO\" = ?",
       "pkColumnList"  : ["UMS_SEQNO"],
-      "standardDays" : 90,
+      "selectQuery": "select \"UMS_SEQNO\" from \"DUMMY4\" where \"REGDATE\" < now() - INTERVAL '3 months' LIMIT 5000 ",
+      "deleteQuery": "delete from \"DUMMY4\" where \"UMS_SEQNO\" = ?",
       "maxBatchCount" : 10000
     },
     "DUMMY5" : {
-      "selectQuery": "select \"UMS_SEQNO\" from \"DUMMY5\" where \"REGDATE\" < ? LIMIT 5000 ",
-      "deleteQuery": "delete from \"DUMMY5\" where \"UMS_SEQNO\" = ?",
       "pkColumnList"  : ["UMS_SEQNO"],
-      "standardDays" : 90,
+      "selectQuery": "select \"UMS_SEQNO\" from \"DUMMY5\" where \"REGDATE\" < now() - INTERVAL '3 months' LIMIT 5000 ",
+      "deleteQuery": "delete from \"DUMMY5\" where \"UMS_SEQNO\" = ?",
       "maxBatchCount" : 10000
     }
   }

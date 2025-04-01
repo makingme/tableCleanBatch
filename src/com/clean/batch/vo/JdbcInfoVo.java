@@ -1,4 +1,4 @@
-package com.clean.batch.extra;
+package com.clean.batch.vo;
 
 public class JdbcInfoVo {
     private String jdbcUrl;
