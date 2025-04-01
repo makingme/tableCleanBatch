@@ -20,8 +20,6 @@ rebel.xml
 /example/
 
 # Log file
-/logs/
-**/logs
 *.log
 
 # Data File
